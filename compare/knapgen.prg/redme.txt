@@ -1,0 +1,7 @@
+https://edux.fit.cvut.cz/courses/MI-PAA/homeworks/04/generator
+
+gcc -lm knapgen.c knapcore.c knapcore.h
+
+./a.out -n 4 -N 50 -m 0.8 -W 200 -C 200 -k 1.5 -d -1 > gen1.knap
+
+

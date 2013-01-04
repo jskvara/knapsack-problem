@@ -1,26 +1,27 @@
-===== Experimentální hodnocení kvality algoritmů =====
-==== Zadani ====
-  * Prozkoumejte citlivost metod řešení problému batohu na parametry instancí generovaných generátorem náhodných instancí. Máte-li podezření na další závislosti, modifikujte zdrojový tvar generátoru.
-  * Na základě zjištění navrhněte a proveďte experimentální vyhodnocení kvality řešení a výpočetní náročnosti
-  * Pozorujte zejména závislosti výpočetního času (B&B, DP, heuristika) a rel. chyby (heuristika) na:
-    * maximální váze věcí
-    * maximální ceně věcí
-    * poměru kapacity batohu k sumární váze
-  * granularitě (pozor - zde si uvědomte smysl exponentu granularity)
-  * Doporučuje se zafixovat všechny parametry na konstantní hodnotu a vždy plynule měnit jeden parametr
+# Experimentální hodnocení kvality algoritmů
 
-==== Porovnani ====
+## Zadani
+* Prozkoumejte citlivost metod řešení problému batohu na parametry instancí generovaných generátorem náhodných instancí. Máte-li podezření na další závislosti, modifikujte zdrojový tvar generátoru.
+* Na základě zjištění navrhněte a proveďte experimentální vyhodnocení kvality řešení a výpočetní náročnosti
+* Pozorujte zejména závislosti výpočetního času (B&B, DP, heuristika) a rel. chyby (heuristika) na:
+  * maximální váze věcí
+  * maximální ceně věcí
+  * poměru kapacity batohu k sumární váze
+* granularitě (pozor - zde si uvědomte smysl exponentu granularity)
+* Doporučuje se zafixovat všechny parametry na konstantní hodnotu a vždy plynule měnit jeden parametr
+
+### Porovnani
 
 Porovnaval jsem tyto veliciny: maximalni cena, maximalni vaha, pomer kapacity k sumarni vaze batohu a granularitu.
 
 Pro generovani jsem pouzival tyto fixni veliciny:
-  * velikost instance: 15
-  * pocet instanci: 50
-  * pomer kapacity k sumarni vaze: 0.6
-  * maximalni vaha veci: 100
-  * maximalni cena veci: 250
-  * exponent granularity: 1
-  * prevaha malych/velkych veci: 0
+* velikost instance: 15
+* pocet instanci: 50
+* pomer kapacity k sumarni vaze: 0.6
+* maximalni vaha veci: 100
+* maximalni cena veci: 250
+* exponent granularity: 1
+* prevaha malych/velkych veci: 0
 Parametr jsem menil pri mereni vzdy jen jeden.
 
 V prubehu mereni se mi bohuzel rozbila zakladni deska u notebooku, takze jsem musel cele mereni opakovat znovu,
@@ -29,42 +30,39 @@ aby byly namerene hodnoty odpovidajici. Parametry notebooku jsou: 6GB RAM, 2x 2.
 Vsechny namerene hodnoty jsou k videni v tomot dokumentu: https://docs.google.com/spreadsheet/ccc?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc#gid=6 (zalozka Porovnani)
 
 Jsou zde uvedeny i grafy jednotlivych mereni casu:
-  * Maximalni cena - vse: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=10&zx=1j4w8yr7f7j
-  * Maximalni cena - bez Brute force: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=11&zx=wfjhjxtylfxi
-  * Maximalni cena - heuristika: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=12&zx=r77cy0vdu1yg
-  * Maximalni vaha - vse: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=13&zx=7qx1z8ud1pl
-  * Maximalni vaha - heuristika: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=14&zx=t680vqxwin2c
-  * Kapacita / sumarni vaha - vse: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=15&zx=clakcyuohhph
-  * Kapacita / sumarni vaha - heuristika: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=16&zx=d1ec7u3c35zi
-  * Granularita - male veci - vse: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=17&zx=8ssbebmynjzi
-  * Granulartia - velke veci - vse: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=18&zx=jr75nr5txqmp
-
-
+* Maximalni cena - vse: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=10&zx=1j4w8yr7f7j
+* Maximalni cena - bez Brute force: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=11&zx=wfjhjxtylfxi
+* Maximalni cena - heuristika: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=12&zx=r77cy0vdu1yg
+* Maximalni vaha - vse: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=13&zx=7qx1z8ud1pl
+* Maximalni vaha - heuristika: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=14&zx=t680vqxwin2c
+* Kapacita / sumarni vaha - vse: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=15&zx=clakcyuohhph
+* Kapacita / sumarni vaha - heuristika: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=16&zx=d1ec7u3c35zi
+* Granularita - male veci - vse: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=17&zx=8ssbebmynjzi
+* Granulartia - velke veci - vse: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=18&zx=jr75nr5txqmp
 
 Dale jsou v dokumentu uvedeny gragy relativni chyby:
 
-  * Maximalni cena: 
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=19&zx=avswdjjvdne6
-  * Maximalni vaha:
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=20&zx=8yy83wfyq93f
-  * Kapacita / sumarni vaha:
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=21&zx=7f49u9nopu28
-  * Granularita - male veci:
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=22&zx=sqojduwbe6if
-  * Granularita - velke veci:
-    * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=23&zx=qa9n8wjkkq5p
+* Maximalni cena: 
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=19&zx=avswdjjvdne6
+* Maximalni vaha:
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=20&zx=8yy83wfyq93f
+* Kapacita / sumarni vaha:
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=21&zx=7f49u9nopu28
+* Granularita - male veci:
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=22&zx=sqojduwbe6if
+* Granularita - velke veci:
+  * https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=23&zx=qa9n8wjkkq5p
 
-
-==== Zaver ====
+### Zaver
 Z vyse uvedenych grafu jsou patrne zavislosti:
   * Cas vypoctu dynamickeho programovani zavisi na maximalni cene veci - cim vyssi je maximalni cena, tim dele vypocet trva
   * Cas vypoctu branch and bound zavisi na pomeru kapacita / sumarni vaha - cim vice se tento pomer blizi k nule, tim dele vypocet trva

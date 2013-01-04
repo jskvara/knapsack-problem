@@ -1,46 +1,46 @@
-====== Řešení problému batohu dynamickým programováním, metodou větví a hranic a aproximativním algoritmem ======
+# Řešení problému batohu dynamickým programováním, metodou větví a hranic a aproximativním algoritmem
 
-===== Specifikace ulohy =====
+## Specifikace ulohy
 Naprogramujte řešení problému batohu:
-  - metodou větví a hranic (B&B) tak, aby omezujícím faktorem byla hodnota optimalizačního kritéria. Tj. použijte ořezávání shora (překročení kapacity batohu) i zdola (stávající řešení nemůže být lepší než nejlepší dosud nalezené),
-  - metodou dynamického programování (dekompozice podle kapacity nebo podle cen),
-  - FPTAS algoritmem, tj. s použitím modifikovaného dynamického programování s dekompozicí podle ceny (při použití dekompozice podle kapacity není algoritmus FPTAS).
+- metodou větví a hranic (B&B) tak, aby omezujícím faktorem byla hodnota optimalizačního kritéria. Tj. použijte ořezávání shora (překročení kapacity batohu) i zdola (stávající řešení nemůže být lepší než nejlepší dosud nalezené),
+- metodou dynamického programování (dekompozice podle kapacity nebo podle cen),
+- FPTAS algoritmem, tj. s použitím modifikovaného dynamického programování s dekompozicí podle ceny (při použití dekompozice podle kapacity není algoritmus FPTAS).
 
-===== Popis implementovaných metod =====
+## Popis implementovaných metod
 
-==== Algoritmus Bruteforce ====
+### Algoritmus Bruteforce
 
 Tento algoritmus jsem jiz resil v prvni uloze, ale zmenil jsem implementacni jazyk z Javy na Ruby, takze jsem musel cely algoritmus prepsat do ruby. Nyni jsem vse resil rekurzi, jelikoz pote se mi velmi zjednodusilo reseni algoritmu Branch & Bound (viz dale). 
 
 Rekurzivni algoritmus postupuje tak, ze nejdrive zkontroluje, zda je aktualni reseni lepsi, nez nejlepsi doposud nalezene a pokud ano, tak ho ulozi jako dosavadni nejlepsi. Pote se projde seznam veci a zavola se stejna funkce s parametry, kdy je vec vlozena do batohu a kdy vec v batohu vlozena neni. Takto se projdou vsechny moznosti a na konci mame ulozen v promenne vysledek nejlepsiho mozneho reseni.
 
-==== Algoritmus Branch & Bound ====
+### Algoritmus Branch & Bound
 
 Tento algoritmus je velmi podobný Bruteforce a maximalne prorezava nutny prohledavany prostor. Jediny rozdil oproti Bruteforce je v tom, ze kontrolujeme, zda aktualni cena veci v batohu plus celkova cena zatim nerozhodnutych veci neni mensi nez doposud nalezene nejlepsi reseni. Pokud ano, tak se cela podvetev zahodi a pokracuje se dale.
 
-==== Dynamicke programovani ====
+### Dynamicke programovani
 
 Reseni pomoci algoritmu dynamickeho programovani nam umoznuje zrychlit vypocet na ukor pametove narocnosti. Obecne si tento algoritmus dopredu predpocitava mozne vysledky a podvysledky, nedochazi tak ke stejnym vypoctum.
 
 Pro problem batohu jsem si vybral dekompozici podle ceny. Udelal jsem si tabulku (pole poli) moznych hmotnosti  pro vsechny kombinace veci v batohu (prvni index byla vec a druhy index celkova cena vlozenych veci do batohu). Vysledek jsem dostal tak, ze jsem v poslednim sloupci s vecmi vybral hmotnost nejvyse v tabulce (nejvyssi mozna cena) nepresahujici povolenou mez batohu. Pote jsem postupoval v tabulce doleva tak, ze pokud byl levy sloupec stejny, tak dana vec v batohu neni, jinak jinak tam je a musime odecist hmotnost a v obou pripadech se v tabulce posunout o sloupec vlevo dokud neprojdeme vsechny veci.
 
-==== FPTAS ====
+### FPTAS
 
 Tento algoritmus vychazi z Dynamickeho programovani. Hlavni myslenkou je, ze si hodnoty tabulky upravime tak, aby se nam zmensila vyska tabulky, udelame si z radku ruzne skatulky. Ja jsem napriklad zvolil celociselne deleni cislem 10, tedy zanedbani posledni cislice. Tento algoritmus neni uplne presny, ale pokud se mohou v tabulce objevit realna cisla, muze narust do obrovskych rozmeru a tento algorimtus tomu zabranuje.
 
-===== Srovnání výpočetních časů  =====
+#### Srovnání výpočetních časů
 
-Vsechny namerene hodnoty jsou shrnuty v teto [[https://docs.google.com/spreadsheet/ccc?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc|tabulce]] (zalozka Brute + BB + Dyn + FPTAS)
+Vsechny namerene hodnoty jsou shrnuty v teto [https://docs.google.com/spreadsheet/ccc?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc](tabulce) (zalozka Brute + BB + Dyn + FPTAS)
 
 Pod tabulkou jsou vsechny hodnoty pro prehlednost zprumerovane.
 
 Z namerenych vysledku jsem vytvoril grafy:
 
-[[https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=6&zx=6ii6xw23ybb8|Graf1]]
+[https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=6&zx=6ii6xw23ybb8](Graf1)
 
 Na tomto grafu jsou zaneseny vsechny hodnoty, je videt, ze Brutefoce je nekolikanasobne pomalejsi nez vsechny ostatni algoritmy.
 
-[[https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=7&zx=yt0giw7qefvo|Graf 2]]
+[https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=7&zx=yt0giw7qefvo](Graf 2)
 Pro lepsi prehlednost grafu, jsem odstranil vsechny vysoke hodnoty z predchoziho grafu (Bruteforce pro n=15 a n=20 a Branch & Bound pro n=20), aby bylo patrne, jak si vedou ostatni algoritmy mezi sebou.
 
 Zajimavosti je, ze Brutefoce je pro male zadani (n=4) nejrychlejsi, je to zpusobeno tim, ze ostatni algoritmy musi testovat vice moznosti a vytvaret dalsi struktury, coz je rezie navic a pri takto malem zadani je to znat.
@@ -51,17 +51,17 @@ Od n=15 vyse uz je videt vyhoda Dynamickeho algoritmu a FPTAS, jejichz vysledky 
 
 Pro vyssi n by se rozdily mezi jednotlivymi algoritmy jeste vice zvysovaly.
 
-===== Závislost chyby a výpočetního času FPTAS na zvolené přesnosti zobrazení =====
+## Závislost chyby a výpočetního času FPTAS na zvolené přesnosti zobrazení
 
 Parametrem tohoto algoritmu, jsem zvolil cislo, kterym se vsechna cisla vkladana do tabulky budou delit. Zvolene parametry byly: 10, 20 a 50.
 
-Vsechna data jsou ve stejnem [[https://docs.google.com/spreadsheet/ccc?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc|dokumentu]] (zalozka FPTAS porovnani)
+Vsechna data jsou ve stejnem [https://docs.google.com/spreadsheet/ccc?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc](dokumentu) (zalozka FPTAS porovnani)
 
-Data jsou shrnuta na tomto [[https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=9&zx=eadhiqquvrbf|grafu]]
+Data jsou shrnuta na tomto [https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=9&zx=eadhiqquvrbf](grafu)
 
 V grafu je zanesena prumerna a maximalni chyba v zavislosti na parametru. Je patrne, ze se vzrustajici hodnotou parametru se zvysuje i odchylka, ale zato bude algorimus pracovat rychleji. Muzeme si tak zvolit maximalni odchylku a podle ni pote upravit parametr.
 
-===== Závěr - zhodnocení naměřených výsledků =====
+## Závěr - zhodnocení naměřených výsledků
 
 Pro velke instance je Bruteforce nejpomalejsi z algoritmu, ale je nejjednodussi na implementaci a vzdy nam vraci presne vysledky. Pro male instance muze byt i rychlejsi nez ostatni algoritmy.
 

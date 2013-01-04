@@ -1,58 +1,54 @@
-===== Seznámení se se zvolenou pokročilou iterativní metodou na problému batohu =====
+# Seznámení se se zvolenou pokročilou iterativní metodou na problému batohu
 
-==== Zadani ====
-  * Zvolte si heuristiku, kterou budete řešit problém vážené splnitelnosti booleovské formule (simulované ochlazování, simulovaná evoluce, tabu prohledávání)
-  * Tuto heuristiku použijte pro řešení problému batohu. Můžete použít dostupné instance problému (zde), anebo si vygenerujte své instance pomocí generátoru. Používejte instance s větším počtem věcí (>30).
-  * Hlavním cílem domácí práce je seznámit se s danou heuristikou, zejména se způsobem, jakým se nastavují její parametry (rozvrh ochlazování, selekční tlak, tabu lhůta…) a modifikace (zjištění počáteční teploty, mechanismus slekce, tabu atributy…). Není-li Vám cokoli jasné, prosíme ptejte se na cvičeních.
-  * Problém batohu není příliš obtížný, většinou budete mít k dispozici globální maxima (exaktní řešení) z předchozích prací, například z dynamického programování. Závěrečná úloha je co do nastavení a požadovaného výkonu heuristiky podstatně náročnější a může vyžadovat zcela jiné nastavení parametrů.
+## Zadani
+* Zvolte si heuristiku, kterou budete řešit problém vážené splnitelnosti booleovské formule (simulované ochlazování, simulovaná evoluce, tabu prohledávání)
+* Tuto heuristiku použijte pro řešení problému batohu. Můžete použít dostupné instance problému (zde), anebo si vygenerujte své instance pomocí generátoru. Používejte instance s větším počtem věcí (>30).
+* Hlavním cílem domácí práce je seznámit se s danou heuristikou, zejména se způsobem, jakým se nastavují její parametry (rozvrh ochlazování, selekční tlak, tabu lhůta…) a modifikace (zjištění počáteční teploty, mechanismus slekce, tabu atributy…). Není-li Vám cokoli jasné, prosíme ptejte se na cvičeních.
+* Problém batohu není příliš obtížný, většinou budete mít k dispozici globální maxima (exaktní řešení) z předchozích prací, například z dynamického programování. Závěrečná úloha je co do nastavení a požadovaného výkonu heuristiky podstatně náročnější a může vyžadovat zcela jiné nastavení parametrů.
 
-==== Popis zvoleného algoritmu =====
+### Popis zvoleného algoritmu
 Pro reseni problemu batohu jsem si vybral geneticky evolucni algoritmus. Tento algoritmus si na zacatku vytvori populaci o urcene velikosti. Pro vytvoreni populace jsem zvolil nahodny algoritmus, ktery mi pro kazdeho jedince vytvori bitovy retezec. Pro pocatecni populaci by bylo mozne vyuzit i nektery heuristicky algoritmus.
 
 Pote jsem pouzil nasledujici parametry pro beh programu:
-  * velikost populace = 100
-  * pravdepodobnost rekombinace = 50%
-  * pravdepodobnost mutace = 2 / pocet veci v batohu
-  * pocet generaci = 50 (maximalne 25 bez zlepseni)
-  * dvoubodove i jednobodove krizeni 
+* velikost populace = 100
+* pravdepodobnost rekombinace = 50%
+* pravdepodobnost mutace = 2 / pocet veci v batohu
+* pocet generaci = 50 (maximalne 25 bez zlepseni)
+* dvoubodove i jednobodove krizeni 
 
-Namerene vysledky jsou dostupne v tomto [[https://docs.google.com/spreadsheet/ccc?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc#gid=8|dokumentu]] (zalozka Genetika)
+Namerene vysledky jsou dostupne v tomto [https://docs.google.com/spreadsheet/ccc?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc#gid=8](dokumentu) (zalozka Genetika)
 
 Pro mereni jsem pouzival soubor se 40 vecmi. Jako zdatnost jedincu jsem pouzil cenu veci v batohu. Umozil jsem i pretizeni batohu s tim, ze se zdatnost snizuje o 7 bodu za kazdy bod pretizeni.
 
 
-=== Vytvoril jsem graf jednoho behu algoritmu ===
+### Vytvoril jsem graf jednoho behu algoritmu
 {{:student:skvarjak:vyvoj.png|}}
-  * modre je znazornen jedinec s nejlepsi zdatnosti
-  * cervene je znazornena prumerna zdatnost vsech jedincu v populaci
-  * zlute je znazornen jedinec s nehorsi zdatnosti
+* modre je znazornen jedinec s nejlepsi zdatnosti
+* cervene je znazornena prumerna zdatnost vsech jedincu v populaci
+* zlute je znazornen jedinec s nehorsi zdatnosti
 
 
-
-=== Graf relativni chyby (v resenich jsou uvedeny i zaporne hodnoty, duvody jsou popsany vyse): ===
-
+### Graf relativni chyby (v resenich jsou uvedeny i zaporne hodnoty, duvody jsou popsany vyse):
 {{:student:skvarjak:relativni-chyba.png|}}
 
 
-=== Graf porovnani rychlosi genetickeho a dynamickeho algoritmu: ===
-
+### Graf porovnani rychlosi genetickeho a dynamickeho algoritmu:
 {{:student:skvarjak:porovnani-cas-genetika-dyn.png|}}
 
 Tento typ grafu jsem vybral pro lepsi prehlednost, hodnoty sloupcoveho grafu byly spatne videt. Je treba dodat, ze se jedna o diskretni hodnoty a ne o vyvoj hodnot.
 
-=== Vyzkousel jsem porovnani rychlosti jednobodoveho a dvoubodoveho krizeni. Vysledky jsou uvedeny v grafu: ===
 
+### Vyzkousel jsem porovnani rychlosti jednobodoveho a dvoubodoveho krizeni. Vysledky jsou uvedeny v grafu:
 {{:student:skvarjak:porovnani-casi.png|}}
 
 
-=== Porovnani relativni odchylky jednobodoveho a dvoubodoveho krizeni: ===
-
+### Porovnani relativni odchylky jednobodoveho a dvoubodoveho krizeni:
 {{:student:skvarjak:relativni-chyba-porovnani.png|}}
 
 
 Zkousel jsem nastavovat velikost populace a pri hodnotach pod 100 mi algoritmus daval mnohem horsi vysledky. Chyba byla i vice nez 50%.
 
-==== Zaver ====
+## Zaver
 
 Geneticky algoritmus ma oproti predchozim pouzitym algoritmum vice parametru nastaveni. Je tedy potreba venovat vice casu hledani spravenho nastaveni. Z grafu behu algoritmu je pekne videt, jak algoritmus postupne konverguje ke spravnemu reseni. Jedinci se slabymi geny jsou postupne nahrazovani temi nejsilnejsimi jedinci a cela populace se tak postupne zlepsuje.
 

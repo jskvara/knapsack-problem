@@ -1,28 +1,27 @@
-====== Řešení problému přelévání vody ======
+# Řešení problému přelévání vody
 
-===== Specifikace ulohy =====
+## Specifikace ulohy
 Navrhněte a implementujte heuristiku řešící zobecněný problém přelévání vody. Heuristiku otestujte na všech zkušebních instancích a srovnejte s prohledáváním stavového prostoru do šířky (BFS). Volitelně srovnejte i s prohledáváním do hloubky (DFS).
 
-
-===== Popis algoritmu =====
+### Popis algoritmu
 Jako prvni algoritmus jsem pouzil prohledavani stromu do sirky (BFS), kde jsem si do fronty (queue) vzdy ukladal stav vody v kbelicich a zaroven hloubku ve stromu. Pri ukladani noveho stavu do fronty stacilo kontrolovat, zda jiz stav nebyl drive navstiven. Pri reseni problemu BFS algoritmem se strom velmi rychle rozvetvil, napriklad hloubce stromu 7 odpovida temer 8000 uzlu. Kazdopadne vzdy nalezneme nejlepsi moznou hloubku zanoreni reseni, tedy nejkratsi cestu ve stromu. Je to zpusobeno tim, ze BFS postupuje po patrech stromu, musime ale navstivit mnoho dalsich stavu, ktere nevedou k reseni.
 
 Jako heuristiku prohledavani jsem zvolil ukladani stavu do prioritni fronty (priority queue), kde se vzdy projdou nejdrive stavy, ktere jsou nejblize k reseni. V pripade prelevani vody, jsem zvolil jako prioritu pocet kyblu, ve kterych je stejne vody jako v reseni. Cim vice kyblu se shoduje s resenim, tim drive se tento stav pouzije, jelikoz vime, ze pro cestu k reseni zbyva s vysokou pravdepodobnosti mene kroku. Heuristika fungovala mnohem rychleji nez BFS algoritmus. Cesta heuristiky se lisila od nejkratsi mozne cesty (BFS), jelikož algoritmus neprochazel vsechny stavy. Pocet navstivenych stavu byl ale oproti BFS nizsi priblizne stonasobne.
 
 Posledni algoritmus pro tuto ulohu bylo prohledavani do hloubky DFS. Tento algoritmus lze jednoduse ziskat tak, ze misto pouziti fronty se u BFS pouzije zasobnik (stack). Prohledavani do hloubky je u teto ulohy dosti nahodne. Navic nemame jistotu ze algoritmus skonci v nejakem rozumnem case. U tohoto typu ukolu jsem si ukladal jiz navstivene stavy, takze se algoritmus nemohl zacyklit, ale u jinych typu uloh (nediskretni veliciny) by k tomu dojit mohlo. Pro vypocet problemu jsem si vybral jazyk Ruby, ktery je oproti ostatnim jazykum dosti pomaly a proto jsem omezil maximalni pocet navstivenych stavu u tohoto algoritmu na 10000 a i tak takoveto vypocty trvaly vice nez 5 hodin.
 
-===== Hodnoty =====
-Vsechny namerene hodnoty jsou uvedeny v tabulce: [[https://docs.google.com/spreadsheet/ccc?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc|Zalozka buckets]]
+### Hodnoty
+Vsechny namerene hodnoty jsou uvedeny v tabulce: [https://docs.google.com/spreadsheet/ccc?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc](Zalozka buckets)
 
-Graf prumerne delky cest k jednotlivym resenim: [[https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=5&zx=zgei6t12hrzn|Zde]]
+Graf prumerne delky cest k jednotlivym resenim: [https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=5&zx=zgei6t12hrzn](Zde)
 
-Graf prumerneho poctu navstivenych bodu stavoveho prostoru: [[https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=4&zx=k7tjp80uikp|Zde]]
+Graf prumerneho poctu navstivenych bodu stavoveho prostoru: [https://docs.google.com/spreadsheet/oimg?key=0AkbD8jGFgVtadFpRVEVRT3EwWXhmTXlXcDVfNXdkUHc&oid=4&zx=k7tjp80uikp](Zde)
 
 Meritka na levych osach jsou logaritmicka, aby byl lepe videt rozdil jednotlivych algoritmu.
 
 Grafy pro DFS jsou trochu zkreslene, jelikoz vypocet byl ukoncen po navstiveni 10000 stavu.
 
-===== Zaver =====
+## Zaver
 
 Algoritmus prohledavani stromu do sirky (BFS) byl nejpresnejsi, ale zato jeho vypocet trval dlouho, protoze jsme museli projit velke mnozstvi stavu. U tohoto algoritmu mame jistotu, ze bude ukoncen.
 

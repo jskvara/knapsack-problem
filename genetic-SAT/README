@@ -1,5 +1,6 @@
-===== Řešení problému vážené splnitelnosti booleovské formule pokročilou iterativní metodou =====
-===== Zadani =====
+# Řešení problému vážené splnitelnosti booleovské formule pokročilou iterativní metodou
+
+## Zadani
 Problém
 Je dána booleovská formule F proměnnných X=(x1, x2, … , xn) v konjunktivní normální formě (tj. součin součtů). Dále jsou dány celočíselné kladné váhy W=(w1, w2, … , wn). Najděte ohodnocení Y=(y1, y2, … , yn) proměnných x1, x2, … , xn tak, aby F(Y)=1 a součet vah proměnných, které jsou ohodnoceny jedničkou, byl maximální.
 
@@ -38,22 +39,22 @@ Tato práce by měla sloužit jako ověření Vašich schopností používat zvo
 
 Hodnocení 6. úlohy je rozdělené do třech základních bodů:
 Algoritmus a implementace (7 b)
-	- Byly použity techniky (procedury, datové struktury), přiměřené problému?
-	- Obsahuje řešení sofistikovanější postupy, adaptační mechanismy?
-	- Obsahuje řešení (ověřené, porovnané!) autorovy originální prvky?
+- Byly použity techniky (procedury, datové struktury), přiměřené problému?
+- Obsahuje řešení sofistikovanější postupy, adaptační mechanismy?
+- Obsahuje řešení (ověřené, porovnané!) autorovy originální prvky?
 Práce s heuristikou (13 b)
-	- Jak autor postupoval při stanovení parametrů a modifikací heuristiky?
-	- Jetliže postupoval systematicky, jak dobře byly navrženy experimenty během práce?
-	- Jestliže se uchýlil k slepému prohledávání prostoru parametrů, je pokrytí tohoto prostoru dostatečné?
-	- Pro jak širokou třídu instancí autorova implementace pracuje?
-	- Jestliže experimentální vyhodnocení signalizuje neúspěch, snažil se autor systematicky odhalit příčinu a byly přiměřeně vyčerpány možnosti nápravy?
+- Jak autor postupoval při stanovení parametrů a modifikací heuristiky?
+- Jetliže postupoval systematicky, jak dobře byly navrženy experimenty během práce?
+- Jestliže se uchýlil k slepému prohledávání prostoru parametrů, je pokrytí tohoto prostoru dostatečné?
+- Pro jak širokou třídu instancí autorova implementace pracuje?
+- Jestliže experimentální vyhodnocení signalizuje neúspěch, snažil se autor systematicky odhalit příčinu a byly přiměřeně vyčerpány možnosti nápravy?
 Experimentální vyhodnocení (10 b)
-	- Jak autor podpořil svoje tvrzení měřením?
-	- Má měření skutečně tu vypovídací hodnotu, jakou mu připisuje autor?
-	- Byl dostatečně zohledněn eventuální randomizovaný způsob práce algoritmu?
-	- Dá se z výsledků usoudit na dostatečnou iterativní sílu lokálního algoritmu?
-	- Jestliže řešení obsahuje neobvyklé, nestandardní postupy, existuje alespoň základní srovnání se standardními postupy?
-	- Je výsledek měření správně prezentován?
+- Jak autor podpořil svoje tvrzení měřením?
+- Má měření skutečně tu vypovídací hodnotu, jakou mu připisuje autor?
+- Byl dostatečně zohledněn eventuální randomizovaný způsob práce algoritmu?
+- Dá se z výsledků usoudit na dostatečnou iterativní sílu lokálního algoritmu?
+- Jestliže řešení obsahuje neobvyklé, nestandardní postupy, existuje alespoň základní srovnání se standardními postupy?
+- Je výsledek měření správně prezentován?
 Práce, kterým zcela chybí experimentální část, nelze přijmout k hodnocení.
 Neúspěch při aplikaci nějaké heuristiky nevylučuje dobré hodnocení, jestliže postup prací byl racionální a prokazuje autorovu poučenost.
 
@@ -73,24 +74,24 @@ Práce s omezujícími podmínkami a počáteční instance
 Pravděpodobně není reálné pracovat pouze s přípustnými řešeními. Je obava, že stavový prostor by se tím stal značně přetržitým, se špatnou dostupností. Přípustná řešení jako počáteční konfigurace nebo populace by se dala získat z nějakého SAT řešiče (dohodněme se, že je to přípustné), ale nemyslím, že je to dobrý nápad. Heuristika by tak startovala z (možná hlubokého) lokálního minima, navíc možná obklopeného nepřípustnými konfiguracemi. Museli bychom tedy stejně heuristiku připravit na práci s nepřípustnými konfiguracemi. Pokud použijete nějakou relaxační techniku a náhodný start (populaci), řešíme vlastně variantu MAX SAT s max počtem splněných klauzulí (v případě katastrofálního selhání práce i toto je lepší než nic). Vhodnou volbou pokut relaxace bychom měli dostat uspokojivě pracující proceduru.
 
 Odkazy
- - http://www.cs.ubc.ca/~hoos/SATLIB/benchm.html - V roce 1993 vypsalo Centrum diskrétní matematiky (Center for Discrete Mathematics and Theoretical Computer Science, DIMACS) university státu New Jersey (Rutgers) projekt a soutěž na řešení obtížných kombinatorických problémů. Část, zabývající se splnitelností, se týkala problému maximální splnitelnosti (tedy bez vah). Jsou zde definovány formáty vstupních a výstupních souborů (CNF a SAT, často nazývané DIMACS formát). V těchto formátech jsou zde zkušební instance. Budeme se těchto formátů držet, ale bude potřeba doplnit váhy proměnných
- - http://www.satlib.org/ - SATLIB.
- - Stochastic Search And Phase Transitions:AI Meets Physics. Bart Selman, AT&T Bell Laboratories, Murray Hill, N.J. USA. Originál - MS Office 6, PDF. Důležitá prezentace o řešení problému splnitelnosti (ponejvíce diskutovány Greedy SAT a WALKSAT). Diskuze tzv. fázových přechodů.
+- http://www.cs.ubc.ca/~hoos/SATLIB/benchm.html - V roce 1993 vypsalo Centrum diskrétní matematiky (Center for Discrete Mathematics and Theoretical Computer Science, DIMACS) university státu New Jersey (Rutgers) projekt a soutěž na řešení obtížných kombinatorických problémů. Část, zabývající se splnitelností, se týkala problému maximální splnitelnosti (tedy bez vah). Jsou zde definovány formáty vstupních a výstupních souborů (CNF a SAT, často nazývané DIMACS formát). V těchto formátech jsou zde zkušební instance. Budeme se těchto formátů držet, ale bude potřeba doplnit váhy proměnných
+- http://www.satlib.org/ - SATLIB.
+- Stochastic Search And Phase Transitions:AI Meets Physics. Bart Selman, AT&T Bell Laboratories, Murray Hill, N.J. USA. Originál - MS Office 6, PDF. Důležitá prezentace o řešení problému splnitelnosti (ponejvíce diskutovány Greedy SAT a WALKSAT). Diskuze tzv. fázových přechodů.
 
 
-===== Algoritmus a implementace =====
+## Algoritmus a implementace
 
 Jako jazyk pro implemntaci reseni SAT problemu jsem si zvolil Ruby. Tenot jazyk jsem pouzil i k reseni predchozich uloh a velmi jsem si ho oblibil.
 
-==== Generator nahodnych instanci ====
+### Generator nahodnych instanci
 
 Vytvoril jsem si program pro generovani nahodnych instanci SAT problemu v DIMACS formatu rozsireneho o vahy jednotlivych promennych. 
 
 Parametry programu jsou:
-  - pocet promennych (defaultne 4)
-  - pocet klauzuli (defaultne 6)
-  - minimalni vaha promennych (defaultne 1)
-  - maximalni vaha promennych (defaultne 10)
+- pocet promennych (defaultne 4)
+- pocet klauzuli (defaultne 6)
+- minimalni vaha promennych (defaultne 1)
+- maximalni vaha promennych (defaultne 10)
 
 Vahy se generuji do komentaru DIMACS formatu nasledujicim zpusobem:
   c weights 2 4 1 6
@@ -110,10 +111,9 @@ p cnf 5 5
 -1 -2 -3 4 5 0
 </code>
 
-==== Algoritmus reseni ====
+## Algoritmus reseni
 
 Nejprve jsem si pro problem naprogramoval reseni pomoci BruteForce, ktere prochazi vsechny mozne stavy a najde mi vzdy nejlepsi reseni. Casti tohoto algoritmu, predevsim vypocet vahy reseni, jsem pote pouzil v genetickem algoritmu. Presne reseni jsem potreboval hlavne kvuli presnym vysledkum, abych mohl spravne nastavit paremetry genetickeho algoritmu a abych mohl merit odchylku vysledku genetickeho algoritmu od optimalniho reseni.
-
 
 Pro reseni problemu SAT pomoci pokrocilych lokalnich heuristik jsem pouzil geneticky algoritmus. Upravil jsem algoritmus z pate ulohy tak, aby vyhovoval reseni problemu SAT. Musel jsem upravit vypocet vahy a splnitelnosti pro jednotlive instance. Zaklad algoritmu ale zustal stejny.
 
@@ -122,15 +122,14 @@ Pro zakodovani genu kazde instance jsem pouzil bitovy retezec (0 a 1), ktery odp
 U pate ulohy jsem vyuzil moznostu prekrocit celkovou vahu veci v batohu s jistou penalizaci, toho jsem bohuzel u SATu vyuzit nemohl, jelikoz vaha se pocita jen pro splnitelne formule a nemelo by smysl pocitat vahy pro nesplnitelne formule.
 
 Program ma tri parametry:
-  - cesta k souboru se vstupnimi daty v DIMACS formatu z generatoru nahodnych instanci
-  - typ algoritmu geneticky X bruteforce (defaultni = geneticky)
-  - cesta k souboru pro ulozeni vystupu algoritmu (defaultni = standardni vystup)
-
+- cesta k souboru se vstupnimi daty v DIMACS formatu z generatoru nahodnych instanci
+- typ algoritmu geneticky X bruteforce (defaultni = geneticky)
+- cesta k souboru pro ulozeni vystupu algoritmu (defaultni = standardni vystup)
 
 Algoritmu pouziva pro vygenerovani populace nahodny algoritmus.
 
 
-===== Práce s heuristikou =====
+## Práce s heuristikou
 
 Pro stanoveni parametru genetickeho algoritmu, jsem vychazel z parametru pate ulohy. Postupne jsem menil vzdy jen jeden parametr a kontroloval jsem zmeny ve vysledcich algoritmu. Pro urcovani parametru jsem vyuzil vygenerovanoe zadani s 20 promennymi a 400 klauzulemi.
 
@@ -139,9 +138,9 @@ Ze zacatku mereni jsem pouzival jen kladne hodnoty pro vahy vygenerovanych insta
 Pro urcovani parametru jsem vzdy menil jen jeden parametr a ostatni byly zafixovany, stavalo se mi ale (napriklad u pravdepodobnosti krizeni), ze se vysledky parametru temer nelisily. Musel jsem proto snizit ostatni parametry, aby byl videt rozdil zmeny teto jedne promenne, ale stalo se mi (u pravdepodobnosti krizeni), ze byl vliv zmeny promenne minimalni.
 
 Vsechny parametry jsem ladil na nekolika instancich s ruznymi parametry:
-  - pocet promennych 10 pocet klauzuli 100
-  - pocet promennych 20 pocet klauzuli 100
-  - pocet promennych 20 pocet klauzuli 400
+- pocet promennych 10 pocet klauzuli 100
+- pocet promennych 20 pocet klauzuli 100
+- pocet promennych 20 pocet klauzuli 400
 
 Zacinal jsem vzdy u mensich instanci a pote jsem upravoval parametry i pro vetsi instance.
 
@@ -163,15 +162,15 @@ Pripravil jsem graf relativni odchylky genetickeho algoritmu od optimalniho rese
 
 {{:student:skvarjak:relative_error_genetics.png|}}
 
-===== Experimentální vyhodnocení, zaver =====
+## Experimentální vyhodnocení, zaver
 
 Vysledne nastaveni parametru je nasledujici:
-  - velikost populace = 500
-  - pravdepodobnost krizeni = 0.7
-  - pravdepodobnost mutace = 2 / pocet_promennych
-  - maximalni pocet generaci = 100
-  - maximalni pocet generaci bez zlepseni = 25
-  - dvoubodove krizeni = nezalezi
+- velikost populace = 500
+- pravdepodobnost krizeni = 0.7
+- pravdepodobnost mutace = 2 / pocet_promennych
+- maximalni pocet generaci = 100
+- maximalni pocet generaci bez zlepseni = 25
+- dvoubodove krizeni = nezalezi
 
 Vsechna mereni jsem opakoval desetrat, vzdy s jinak vygenerovanym zadanim (se stejnymi parametry generatoru zadani), aby nedochazelo ke zkresleni neoptimalnimi vysledky algoritmu.
 

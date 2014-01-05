@@ -11,9 +11,9 @@ class Buckets
 	end
 
 	def run
-		runPriority
+		# runPriority
 		# runBfs
-		# runDfs
+		runDfs
 	end
 
 	def runBfs

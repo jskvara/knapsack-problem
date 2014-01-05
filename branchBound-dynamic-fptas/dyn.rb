@@ -1,8 +1,8 @@
 class Dyn
 	def run
-		filename = "inst/knap_4.inst.dat"
+		# filename = "inst/knap_4.inst.dat"
 		# filename = "inst/knap_10.inst.dat"
-		# filename = "inst/knap_15.inst.dat"
+		filename = "inst/knap_15.inst.dat"
 		# filename = "inst/knap_20.inst.dat"
 		readInput filename
 	end
